@@ -1,0 +1,148 @@
+#%RAML 1.0 Library
+usage: Common Response Body In Rapper Profile API
+types:
+  Get-All-Rappers:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          required: true
+          type: string
+          example: "J Cole"
+        born:
+          required: true
+          type: date-only
+          example: "1990-01-30"  
+        address:
+          type: object
+          properties:
+            country:
+              required: true
+              type: string
+              example: "US"
+            area:
+              type: string
+              example: "Chicago"
+  Regist-Rapper:
+    type: object
+    properties:
+        name:
+          required: true
+          type: string
+          example: "J Cole"
+        born:
+          required: true
+          type: date-only
+          example: "1990-01-30"  
+        address:
+          type: object
+          properties:
+            country:
+              required: true
+              type: string
+              example: "US"
+            area:
+              type: string
+              example: "Chicago"
+  Get-Rapper:
+    type: object
+    properties:
+        name:
+          required: true
+          type: string
+          example: "J Cole"
+        born:
+          required: true
+          type: date-only
+          example: "1990-01-30"  
+        address:
+          type: object
+          properties:
+            country:
+              required: true
+              type: string
+              example: "US"
+            area:
+              type: string
+              example: "Chicago" 
+  Server-Internal-Error:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 500
+      message:
+        type: string
+        required: true
+        example: "Server Internal Error"
+  Bad-Request:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 400
+      message:
+        type: string
+        required: true
+        example: "Bad Request"
+  Service-Unavailable:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 503
+      message:
+        type: string
+        required: true
+        example: "Service Unavailable"
+  Bad-Gateway:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 502
+      message:
+        type: string
+        required: true
+        example: "Bad gateway"
+  Unauthorized:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 401
+      message:
+        type: string
+        required: true
+        example: "Unauthorized"
+  Forbidden:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 403
+      message:
+        type: string
+        required: true
+        example: "Forbidden"
+  Success:
+    type: object
+    properties:
+      status:
+        type: integer
+        required: true
+        example: 200
+      message:
+        type: string
+        required: true
+        example: "Success"  
+
+      
+        

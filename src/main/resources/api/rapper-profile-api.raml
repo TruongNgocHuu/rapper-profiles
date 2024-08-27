@@ -1,0 +1,236 @@
+#%RAML 1.0
+title: Rapper-Profile
+baseUri: http://localhost:8081/api/v1
+uses:
+  common_response: exchange_modules/5b43107d-a178-4b52-8c45-64e9f5acd3dc/common-response-rapper-profile-api/1.0.1/common-response-rapper-profile-api.raml
+/rapper:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: common_response.Get-All-Rappers
+            example:
+              !include data_type/Get_All_Example.json
+      400:
+        body:
+          application/json:
+            type: common_response.Bad-Request
+            example:
+              {
+                "status": 400,
+                "message": "Bad Request"
+              }
+      500:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 500,
+                "message": "Server Error"
+              }
+      502:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 502,
+                "message": "Bad Gateway"
+              }
+  post:
+    body:
+      application/json:
+        type: common_response.Regist-Rapper
+        example:
+          !include data_type/Regist_Rapper.json
+    responses:
+        200:
+          body:
+            application/json:
+              type: common_response.Success
+              example:
+                {
+                  "status": 200,
+                  "message": "Success"
+                }
+        400:
+          body:
+            application/json:
+              type: common_response.Bad-Request
+              example:
+                {
+                  "status": 400,
+                  "message": "Bad Request"
+                }
+        500:
+          body:
+            application/json:
+              type: common_response.Server-Internal-Error
+              example:
+                {
+                  "status": 500,
+                  "message": "Server Error"
+                }
+        502:
+          body:
+            application/json:
+              type: common_response.Server-Internal-Error
+              example:
+                {
+                  "status": 502,
+                  "message": "Bad Gateway"
+                }        
+  put:
+    queryParameters:
+      id:
+        required: true
+        example: 1
+        type: integer
+    body:
+      application/json:
+        type: common_response.Regist-Rapper
+        example: !include data_type/Regist_Rapper.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: common_response.Success
+            example:
+              {
+                "status": 200,
+                "message": "Update Success"
+              }
+      400:
+        body:
+          application/json:
+            type: common_response.Bad-Request
+            example:
+              {
+                "status": 400,
+                "message": "Bad Request"
+              }
+      500:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 500,
+                "message": "Server Error"
+              }
+      502:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 502,
+                "message": "Bad Gateway"
+              }
+      503:
+        body:
+          application/json:
+            type: common_response.Service-Unavailable
+            example: 
+              {
+                "status": 503,
+                "message": "Service Unavailable"
+              }
+  delete:
+    queryParameters:
+      id:
+        required: true
+        example: 1
+        type: integer
+    body:
+      application/json:
+        type: common_response.Regist-Rapper
+        example: !include data_type/Regist_Rapper.json
+    responses:
+      200:
+        body:
+          application/json:
+            type: common_response.Success
+            example:
+              {
+                "status": 200,
+                "message": "Delete Success"
+              }
+      400:
+        body:
+          application/json:
+            type: common_response.Bad-Request
+            example:
+              {
+                "status": 400,
+                "message": "Bad Request"
+              }
+      500:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 500,
+                "message": "Server Error"
+              }
+      502:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 502,
+                "message": "Bad Gateway"
+              }
+      503:
+        body:
+          application/json:
+            type: common_response.Service-Unavailable
+            example: 
+              {
+                "status": 503,
+                "message": "Service Unavailable"
+              }          
+/get-by-id:
+  get:
+    queryParameters:
+      id:
+        required: true
+        example: 1
+        type: integer
+    responses:
+      200:
+        body:
+          application/json:
+            type: common_response.Get-Rapper
+            example: !include data_type/Regist_Rapper.json
+      400:
+        body:
+          application/json:
+            type: common_response.Bad-Request
+            example:
+              {
+                "status": 400,
+                "message": "Bad Request"
+              }
+      500:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 500,
+                "message": "Server Error"
+              }
+      502:
+        body:
+          application/json:
+            type: common_response.Server-Internal-Error
+            example:
+              {
+                "status": 502,
+                "message": "Bad Gateway"
+              } 

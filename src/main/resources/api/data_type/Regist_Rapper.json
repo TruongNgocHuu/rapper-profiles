@@ -1,0 +1,8 @@
+{
+  "name": "J cole",
+  "born": "1990-01-30",
+  "address": {
+    "country": "US",
+    "area": "Chicago"
+  }
+}
