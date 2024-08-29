@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
 	xmlns="http://www.mulesoft.org/schema/mule/core"
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
 	<flow
 		name="post:\rapper:application\json:rapper-profile-api-config">
+		<try doc:name="Try" doc:id="2f244fc3-67ad-4118-8118-f7a90ec06e6e" >
+			<db:insert doc:name="Insert" doc:id="e9eeec2f-a1f0-4ee7-81b7-be77218de877" config-ref="Database-Rapper-Config">
+			<db:sql><![CDATA[INSERT into profiles(name,born,country,area) values(:name,:born,:country,:area)]]></db:sql>
+			<db:input-parameters><![CDATA[#[{
+	name: payload.name,
+	born: payload.born as Date {format:"yyyy-MM-dd"},
+	country: payload.address.country,
+	area: payload.address.area
+}]]]></db:input-parameters>
+		</db:insert>
+			<error-handler >
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="22b63715-c392-40f1-8fa4-0e52a5ea76a0" type="ANY">
+					<ee:transform doc:name="Transform Message" doc:id="4d11209d-aa1c-44e5-a2fd-2a293fd26c39" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "Create Fail, please check again"
+}]]></ee:set-payload>
+						</ee:message>
+						<ee:variables >
+							<ee:set-variable variableName="httpStatus" ><![CDATA[400]]></ee:set-variable>
+							<ee:set-variable variableName="httpReason" ><![CDATA["Bad Request"]]></ee:set-variable>
+						</ee:variables>
+					</ee:transform>
+				</on-error-propagate>
+			</error-handler>
+		</try>
 		<ee:transform doc:name="Transform Message">
 			<ee:message>
 				<ee:set-payload><![CDATA[%dw 2.0
