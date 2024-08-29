@@ -14,7 +14,7 @@ output application/json
 ---
 [
   {
-    name: "Kendrick",
+    name: "123",
     born: "1990-01-30",
     address: {
       country: "US",
@@ -22,7 +22,7 @@ output application/json
     }
   }, 
   {
-    name: "HuuTocDai",
+    name: "456",
     born: "2000-12-21",
     address: {
       country: "VN",
