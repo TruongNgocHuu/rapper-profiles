@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>630c7892-050b-4d0b-a901-5e43252e4318</groupId>
 	<artifactId>rapper-profile</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
@@ -44,7 +43,7 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<groupId>org.apache.maven.plugin</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
 			</plugin>
@@ -89,6 +88,7 @@
 						</deploymentSettings>
 						<properties>
 							<http.port>8081</http.port>
+							<env>dev</env>
 						</properties>
 					</cloudhub2Deployment>
 				</configuration>
