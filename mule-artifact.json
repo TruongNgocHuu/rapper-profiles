@@ -3,5 +3,5 @@
   "javaSpecificationVersions": [
     "1.8"
   ],
- "secureProperties": ["clientId", "clientSecret"]
+ "secureProperties": ["clientId", "clientSecret", "env", "http.port"]
 }
