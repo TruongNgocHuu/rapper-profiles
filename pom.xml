@@ -89,6 +89,8 @@
 						<properties>
 							<http.port>8081</http.port>
 							<env>dev</env>
+							<clientId>59f52c27571f4963b759b7ac5bb4076e</clientId>
+							<clientSecret>2559EF90DDe243aD9aA22CbC514817f0</clientSecret>
 						</properties>
 					</cloudhub2Deployment>
 				</configuration>
