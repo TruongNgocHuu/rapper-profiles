@@ -89,8 +89,8 @@
 						<properties>
 							<http.port>8081</http.port>
 							<env>dev</env>
-							<anypoint.platform.clientId>${clientId}</anypoint.platform.clientId>
-							<anypoint.platform.clientSecret>${clientSecret}</anypoint.platform.clientSecret>
+							<anypoint.platform.client_id>${clientId}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${clientSecret}</anypoint.platform.client_secret>
 						</properties>
 					</cloudhub2Deployment>
 				</configuration>
