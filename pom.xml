@@ -139,7 +139,7 @@
 
 	<repositories>
 		<repository>
-			<id>rp-pf</id>
+			<id>rapper-profile</id>
 			<name>Anypoint Exchange</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/630c7892-050b-4d0b-a901-5e43252e4318/maven</url>
 			<layout>default</layout>
@@ -171,7 +171,7 @@
 	</pluginRepositories>
 	<distributionManagement>
 		<repository>
-			<id>rp-pf</id>
+			<id>rapper-profile</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/630c7892-050b-4d0b-a901-5e43252e4318/maven</url>
 			<layout>default</layout>
