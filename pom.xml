@@ -30,9 +30,6 @@
 							<cloudhub2Deployment>
 								<applicationName>rapper-profiles-dev</applicationName>
 								<environment>DEV</environment>
-								<properties>
-									<env>dev</env>
-								</properties>
 							</cloudhub2Deployment>
 						</configuration>
 					</plugin>
@@ -78,8 +75,9 @@
 							</http>
 						</deploymentSettings>
 						<properties>
-							<http.port>8081</http.port>
 							<env>dev</env>
+							<http.port>8081</http.port>
+							<dbpassword>${dbpassword}</dbpassword>
 							<anypoint.platform.client_id>${clientId}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${clientSecret}</anypoint.platform.client_secret>
 						</properties>
