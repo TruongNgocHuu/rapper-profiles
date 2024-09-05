@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
 	xmlns="http://www.mulesoft.org/schema/mule/core"
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
 	<flow name="get:\rapper:rapper-profile-api-config">
+		<try doc:name="Try" doc:id="cedc016a-8473-454f-82aa-81521261c01d" >
+			<db:select doc:name="Select" doc:id="fe1853dd-e7f1-4046-b58b-6414fd26ac8c" config-ref="Database-Rapper-Config">
+			<db:sql><![CDATA[SELECT * FROM profiles]]></db:sql>
+		</db:select>
+			<error-handler >
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="Error handler of Select database" doc:id="5a62dfbd-3e7f-4c2b-82e8-f0bb8992f43a" type="ANY">
+					<ee:transform doc:name="Transform Message" doc:id="847739ad-818c-4cdc-aca5-69173fc7e99b" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"error": error.detailedDescription
+}]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+				</on-error-propagate>
+			</error-handler>
+		</try>
 		<ee:transform doc:name="Transform Message">
 			<ee:message>
 				<ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-[
-  {
-    name: "3979",
-    born: "1990-01-30",
-    address: {
-      country: "US",
-      area: "Chicago"
-    }
-  }, 
-  {
-    name: "456",
-    born: "2000-12-21",
-    address: {
-      country: "VN",
-      area: "BienHoa"
-    }
-  }
-] as Array {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
+payload map(profile,index) -> {
+	name: profile.name,
+	born: profile.born,
+	address:{
+		country: profile.country,
+		area: profile.area
+	}
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
